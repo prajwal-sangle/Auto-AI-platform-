@@ -485,7 +485,7 @@ export default function CitizenWorkspaceView({
   ];
 
   return (
-    <div className="space-y-6 font-['Manrope',sans-serif] text-slate-900">
+    <div className="space-y-6 font-['Manrope',sans-serif] text-slate-900 pb-20 md:pb-6">
       {/* 1. LIGHT AESTHETIC TOP DATA OVERVIEW & PIPELINE HERO */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-white via-blue-50/40 to-sky-50/60 p-5 sm:p-6 border border-blue-200/80 shadow-2xs">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
@@ -574,9 +574,9 @@ export default function CitizenWorkspaceView({
         </div>
       </div>
 
-      {/* 2. HUMAN-INTERACTIVE 5-STEP PIPELINE STEPPER */}
-      <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-2xs">
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+      {/* 2. HUMAN-INTERACTIVE 5-STEP PIPELINE STEPPER (With Native Mobile App Touch Pan & Snap) */}
+      <div className="bg-white p-2.5 sm:p-3 rounded-2xl border border-slate-200 shadow-2xs">
+        <div className="flex sm:grid sm:grid-cols-5 gap-2 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory touch-pan-x pb-1 sm:pb-0">
           {steps.map((step, idx) => {
             const isActive = activeTab === step.id;
             const isPassed =
@@ -590,7 +590,7 @@ export default function CitizenWorkspaceView({
                 key={step.id}
                 type="button"
                 onClick={() => onChangeTab(step.id)}
-                className={`relative flex items-center gap-2.5 p-2.5 rounded-xl transition-all text-left cursor-pointer border ${
+                className={`snap-start flex-shrink-0 min-w-[145px] sm:min-w-0 relative flex items-center gap-2.5 p-2.5 rounded-xl transition-all text-left cursor-pointer border active:scale-[0.98] touch-manipulation ${
                   isActive
                     ? "bg-blue-50/90 border-2 border-blue-400 text-blue-900 shadow-2xs"
                     : isPassed
@@ -1727,6 +1727,39 @@ export default function CitizenWorkspaceView({
         onConfirmOverride={handleConfirmOverride}
         onKeepRecommended={handleKeepRecommended}
       />
+
+      {/* 4. NATIVE MOBILE APP BOTTOM DOCK (Touch Navigation) */}
+      <nav aria-label="Mobile Navigation Dock" className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-2 py-1.5 shadow-lg safe-bottom">
+        <div className="flex items-center justify-around max-w-lg mx-auto">
+          {steps.map((step) => {
+            const Icon = step.icon;
+            const isActive = activeTab === step.id;
+            return (
+              <button
+                key={step.id}
+                type="button"
+                onClick={() => onChangeTab(step.id)}
+                className={`flex flex-col items-center justify-center gap-0.5 py-1 px-2 rounded-xl transition-transform active:scale-90 touch-manipulation cursor-pointer ${
+                  isActive
+                    ? "text-blue-600 font-extrabold"
+                    : "text-slate-500 hover:text-slate-800"
+                }`}
+              >
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${
+                    isActive
+                      ? "bg-blue-100 text-blue-700 shadow-2xs"
+                      : "bg-transparent text-slate-500"
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-[10px] tracking-tight">{step.label.split(" ")[0]}</span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
     </div>
   );
 }

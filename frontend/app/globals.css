@@ -193,3 +193,31 @@ body {
   animation: subtle-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   background-color: #E2E8F0;
 }
+
+/* Mobile Web Application Touch & Bootstrap-like Responsiveness */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a, select, input {
+  touch-action: manipulation;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.touch-pan-x {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+

@@ -25,6 +25,23 @@ export const metadata: Metadata = {
   title: "Smart Data Analyst — Automated Data Profiling, Cleaning, EDA & AutoML",
   description:
     "Upload a CSV or Excel dataset and turn raw data into analysis-ready insights with automated profiling, cleaning, exploration and model benchmarking.",
+  applicationName: "Smart Data Analyst",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Data Analyst",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
