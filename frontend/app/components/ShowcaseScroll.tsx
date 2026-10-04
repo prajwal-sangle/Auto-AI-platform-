@@ -1107,14 +1107,14 @@ export default function ShowcaseScroll() {
       }}
     >
       {/* Inner Sticky Container (100vh pinned to top) */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-white">
-        <div className="max-w-[1260px] w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-12">
+      <div className="sticky top-0 min-h-screen lg:h-screen w-full flex items-center justify-center overflow-hidden bg-white py-10 lg:py-0">
+        <div className="max-w-[1260px] w-full mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 items-center gap-4 sm:gap-6 lg:gap-12">
           {/* ========================================================
               LEFT COLUMN: HEADING, SUBTEXT, CTA & INTERACTIVE TABS
               ======================================================== */}
-          <div className="flex flex-col items-start z-20 lg:col-span-5">
+          <div className="flex flex-col items-start z-20 lg:col-span-5 pt-8 sm:pt-0">
             {/* Interactive Step Switcher Tabs (Click to instantly switch scenes) */}
-            <div className="flex items-center gap-1.5 p-1 bg-slate-100/90 rounded-full mb-5 border border-slate-200/80 shadow-xs">
+            <div className="flex items-center gap-1 p-0.5 sm:p-1 bg-slate-100/90 rounded-full mb-3 sm:mb-5 border border-slate-200/80 shadow-xs scale-90 sm:scale-100 origin-left">
               {[
                 { id: 0, label: "01 • Understand", icon: "📊" },
                 { id: 1, label: "02 • Clean", icon: "✨" },
@@ -1126,7 +1126,7 @@ export default function ShowcaseScroll() {
                     key={step.id}
                     type="button"
                     onClick={() => handleJumpToScene(step.id)}
-                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
+                    className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all duration-200 cursor-pointer ${
                       isActive
                         ? "bg-[#3A35E0] text-white shadow-md shadow-[#3A35E0]/25"
                         : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
@@ -1152,7 +1152,7 @@ export default function ShowcaseScroll() {
                 className="flex flex-col items-start"
               >
                 {/* Heading Lines (revealed with stagger) */}
-                <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-black text-[#0f172a] leading-[1.08] tracking-tight">
+                <h2 className="text-2xl sm:text-4xl lg:text-[52px] font-black text-[#0f172a] leading-[1.12] sm:leading-[1.08] tracking-tight">
                   {currentScene.titleLines.map((line, idx) => (
                     <motion.div
                       key={idx}
@@ -1178,7 +1178,7 @@ export default function ShowcaseScroll() {
                     duration: 0.35,
                     ease: TIMING.easeEnter,
                   }}
-                  className="text-slate-500 font-semibold text-base sm:text-lg mt-4 max-w-[34ch] leading-snug"
+                  className="text-slate-500 font-semibold text-xs sm:text-base lg:text-lg mt-2 sm:mt-4 max-w-[34ch] leading-snug"
                 >
                   {currentScene.subtext}
                 </motion.p>
@@ -1194,12 +1194,12 @@ export default function ShowcaseScroll() {
                     stiffness: 280,
                     damping: 20,
                   }}
-                  className="mt-6 flex items-center gap-4 flex-wrap"
+                  className="mt-3.5 sm:mt-6 flex items-center gap-3 sm:gap-4 flex-wrap"
                 >
                   <button
                     type="button"
                     style={{ backgroundColor: "var(--sc-royal-blue)" }}
-                    className="hover:opacity-95 text-white font-extrabold text-sm px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+                    className="hover:opacity-95 text-white font-extrabold text-xs sm:text-sm px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
                   >
                     {currentScene.ctaText}
                   </button>
@@ -1233,9 +1233,11 @@ export default function ShowcaseScroll() {
           {/* ========================================================
               RIGHT COLUMN: LAPTOP VIEW + MASSIVE GEOMETRIC TRANSITION + CARDS
               ======================================================== */}
-          <div className="relative flex justify-center items-center h-[580px] perspective-[1200px] lg:col-span-7">
+          <div className="relative flex justify-center items-center h-[260px] sm:h-[400px] lg:h-[580px] perspective-[1200px] lg:col-span-7 mt-2 sm:mt-0">
             {/* Massive Left-to-Right Geometric Shape Transition */}
-            <ScGeometricTransition activeScene={activeScene} />
+            <div className="hidden sm:block">
+              <ScGeometricTransition activeScene={activeScene} />
+            </div>
 
             {/* Central Laptop Mockup with idle float and mouse tilt */}
             <motion.div
@@ -1253,13 +1255,13 @@ export default function ShowcaseScroll() {
                 rotateY: { duration: 0.2, ease: "linear" },
                 rotateX: { duration: 0.2, ease: "linear" },
               }}
-              className="relative z-20 w-full flex justify-center will-change-transform"
+              className="relative z-20 w-full flex justify-center will-change-transform scale-[0.62] sm:scale-[0.85] lg:scale-100 origin-top lg:origin-center"
             >
               <LaptopMockup sceneIndex={activeScene} />
             </motion.div>
 
-            {/* Floating Tilted Cards with soft shadow and spring popup entrance */}
-            <div className="absolute inset-0 pointer-events-none z-35">
+            {/* Floating Tilted Cards with soft shadow and spring popup entrance (Hidden on mobile to avoid viewport collision) */}
+            <div className="hidden sm:block absolute inset-0 pointer-events-none z-35">
               <AnimatePresence mode="sync">
                 {currentScene.cards.map((card, idx) => (
                   <motion.div
@@ -1324,7 +1326,7 @@ export default function ShowcaseScroll() {
         </div>
 
         {/* 3-Segment Progress Indicator */}
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2.5 z-40">
+        <div className="hidden sm:flex absolute right-6 top-1/2 -translate-y-1/2 flex-col gap-2.5 z-40">
           {[0, 1, 2].map((idx) => (
             <button
               key={idx}

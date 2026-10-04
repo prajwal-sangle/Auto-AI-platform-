@@ -385,20 +385,21 @@ export default function CryptoLandingPage({
       {/* ============================================================
           1. TOP NAVIGATION BAR (As in Screenshot 2)
           ============================================================ */}
-      <nav className="fixed top-3 left-1/2 -translate-x-1/2 w-[min(1080px,94%)] z-50 flex items-center justify-between px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,40,0.08)] border border-slate-100/80">
+      <nav className="fixed top-2 sm:top-3 left-1/2 -translate-x-1/2 w-[min(1080px,95%)] z-50 flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,40,0.08)] border border-slate-100/80">
         {/* Brand Logo & Workspace / Technical Details Segmented Switch */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
           <div
             onClick={onLoadDemo}
-            className="cursor-pointer border-[1.5px] border-[#3a5bff] px-2.5 py-1 rounded text-[#2f35d9] font-black text-sm tracking-tight whitespace-nowrap"
+            className="cursor-pointer border-[1.5px] border-[#3a5bff] px-2 sm:px-2.5 py-1 rounded text-[#2f35d9] font-black text-xs sm:text-sm tracking-tight whitespace-nowrap"
           >
-            Smart Data Analyst
+            <span className="sm:hidden">SDA</span>
+            <span className="hidden sm:inline">Smart Data Analyst</span>
           </div>
 
-          <div className="flex bg-[#eceef6] p-1 rounded-full text-xs font-bold">
+          <div className="flex bg-[#eceef6] p-0.5 sm:p-1 rounded-full text-[10px] sm:text-xs font-bold">
             <span
               onClick={() => setActiveSegment("workspace")}
-              className={`px-3.5 py-1 rounded-full cursor-pointer transition-all duration-150 ${
+              className={`px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full cursor-pointer transition-all duration-150 ${
                 activeSegment === "workspace"
                   ? "bg-white text-slate-900 shadow-sm"
                   : "text-slate-500 hover:text-slate-900"
@@ -411,13 +412,14 @@ export default function CryptoLandingPage({
                 setActiveSegment("tech");
                 scrollToStory();
               }}
-              className={`px-3.5 py-1 rounded-full cursor-pointer transition-all duration-150 ${
+              className={`px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full cursor-pointer transition-all duration-150 ${
                 activeSegment === "tech"
                   ? "bg-white text-slate-900 shadow-sm"
                   : "text-slate-500 hover:text-slate-900"
               }`}
             >
-              Technical Details
+              <span className="hidden sm:inline">Technical Details</span>
+              <span className="sm:hidden">Docs</span>
             </span>
           </div>
         </div>
@@ -439,9 +441,10 @@ export default function CryptoLandingPage({
         <div className="flex items-center gap-2">
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="bg-[#2f35d9] hover:bg-[#252ac0] text-white text-xs font-extrabold px-4 py-2.5 rounded-full shadow-[0_2px_10px_rgba(47,53,217,0.25)] hover:shadow-[0_4px_14px_rgba(47,53,217,0.35)] transition-all cursor-pointer"
+            className="bg-[#2f35d9] hover:bg-[#252ac0] text-white text-[11px] sm:text-xs font-extrabold px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full shadow-[0_2px_10px_rgba(47,53,217,0.25)] hover:shadow-[0_4px_14px_rgba(47,53,217,0.35)] transition-all cursor-pointer whitespace-nowrap"
           >
-            Start with Your Dataset
+            <span className="hidden sm:inline">Start with Your Dataset</span>
+            <span className="sm:hidden">Upload</span>
           </button>
         </div>
       </nav>
@@ -561,7 +564,7 @@ export default function CryptoLandingPage({
 
           {/* Right Column: Clean Dual-Device Showcase (Desktop Web App + Companion Phone) */}
           <div
-            className="relative flex justify-center items-center h-[560px] perspective-[1200px]"
+            className="relative flex justify-center items-center h-[470px] sm:h-[560px] perspective-[1200px] mt-4 sm:mt-0"
             onMouseMove={handleHeroMouseMove}
             onMouseLeave={handleHeroMouseLeave}
           >
@@ -709,7 +712,7 @@ export default function CryptoLandingPage({
                 rotateY: { duration: 0.15, ease: "linear" },
                 rotateX: { duration: 0.15, ease: "linear" },
               }}
-              className="relative sm:ml-auto lg:translate-x-10 w-[245px] sm:w-[255px] h-[510px] rounded-[44px] bg-white p-[7px] shadow-[0_30px_70px_rgba(15,23,42,0.35)] z-20 will-change-transform"
+              className="relative sm:ml-auto lg:translate-x-10 w-[235px] sm:w-[255px] h-[470px] sm:h-[510px] scale-[0.92] sm:scale-100 origin-center rounded-[44px] bg-white p-[7px] shadow-[0_30px_70px_rgba(15,23,42,0.35)] z-20 will-change-transform"
               style={{
                 boxShadow:
                   "0 0 0 1px #cbd0dc, 0 0 0 3px #f4f6fa, -14px 22px 50px rgba(15, 23, 42, 0.28), 0 30px 70px rgba(30, 41, 59, 0.2)",
@@ -890,12 +893,12 @@ export default function CryptoLandingPage({
             </motion.div>
 
             {/* Luminous Ground Pedestal & Floating Status Chips Underneath Devices */}
-            <div className="absolute -bottom-10 inset-x-0 flex flex-col items-center pointer-events-none z-10">
+            <div className="absolute -bottom-6 sm:-bottom-10 inset-x-0 flex flex-col items-center pointer-events-none z-10">
               {/* Luminous Neon Ground Glow */}
-              <div className="w-[85%] h-12 bg-gradient-to-r from-blue-500/25 via-cyan-400/35 to-purple-500/25 blur-2xl rounded-full" />
+              <div className="w-[85%] h-10 sm:h-12 bg-gradient-to-r from-blue-500/25 via-cyan-400/35 to-purple-500/25 blur-2xl rounded-full" />
               
               {/* Perspective Ground Pedestal Plate */}
-              <div className="relative w-[92%] h-7 rounded-[26px] bg-gradient-to-b from-white/70 via-slate-100/30 to-transparent border border-white/80 shadow-[0_16px_36px_rgba(37,99,235,0.12)] flex items-center justify-center overflow-hidden">
+              <div className="relative w-[92%] h-6 sm:h-7 rounded-[26px] bg-gradient-to-b from-white/70 via-slate-100/30 to-transparent border border-white/80 shadow-[0_16px_36px_rgba(37,99,235,0.12)] flex items-center justify-center overflow-hidden">
                 <div
                   className="absolute inset-0 opacity-25"
                   style={{
@@ -908,15 +911,15 @@ export default function CryptoLandingPage({
               </div>
 
               {/* Floating Ground Feature Badges */}
-              <div className="flex flex-wrap items-center justify-center gap-2 mt-2 pointer-events-auto">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10px] font-black text-slate-800">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-1 sm:mt-2 pointer-events-auto scale-90 sm:scale-100">
+                <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs text-[9px] sm:text-[10px] font-black text-slate-800">
+                  <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>⚡ Zero-Install Browser RAM</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-600/90 backdrop-blur-md border border-blue-500 shadow-xs text-[10px] font-black text-white">
+                <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-blue-600/90 backdrop-blur-md border border-blue-500 shadow-xs text-[9px] sm:text-[10px] font-black text-white">
                   <span>📊 Visual Analytics Active</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs text-[10px] font-black text-slate-800">
+                <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs text-[9px] sm:text-[10px] font-black text-slate-800">
                   <span className="text-purple-600 font-extrabold">🛡️ 100% Privacy Verified</span>
                 </div>
               </div>
